@@ -1,0 +1,8 @@
+$.ajax({
+	method : "POST",
+	url : "<c:url value='/servlet'/>",
+	dataType : "JSON",
+	data : { key : value },
+	success : function(data){},
+	error : function(){}
+});
