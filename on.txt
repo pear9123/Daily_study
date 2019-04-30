@@ -1,0 +1,4 @@
+$("#wait_payment").on("click",function(){
+});
+
+#해당 ID 클릭시
