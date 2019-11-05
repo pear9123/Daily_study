@@ -1,0 +1,35 @@
+    Hash Map
+    // java8
+    // 기본부터 정확히 map
+    Map<Object, Object> map = new HashMap<>();
+    map.put("a","a");
+    map.put("b","b");
+    map.put("c","c");
+
+    // get은 key로
+    map.get("a");
+
+    // hash에서 모든 key와 value 호출
+		Set<Map.Entry<String, String>> entry = map.entrySet();
+		for(Map.Entry<String, String> ky : entry) {
+			System.out.println("keys : "+ky.getKey());
+			System.out.println("value : "+ky.getValue());
+		}
+    
+    // getordefalut 예제
+		// 찾는 키가 있으면 그키를 반환하고 없으면 지정된 키를 반환
+    // 서로 비교하는 문법이나 중복 된것을 찾을떄 쓰면 좋겠음
+    
+		String[] hint1 = {"hey","why","what"};
+		String[] hint2 = {"why","what"};
+		
+		Map<String, Integer> hint = new HashMap<>();
+		for(String a : hint1) { hint.put(a, hint.getOrDefault(a, 0)+1); }
+		for(String a : hint2) { hint.put(a, hint.get(a)-1); }
+		System.out.println("hint : "+hint);
+		
+		for(String key : hint.keySet()) {
+			if(hint.get(key) != 0) {
+				System.out.println("key : "+key);
+			}
+		}
