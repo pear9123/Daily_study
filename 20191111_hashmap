@@ -1,0 +1,66 @@
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+class Solution {
+    public int[] solution(int[] answers) {
+        int[] arr1 = {1,2,3,4,5};
+        int[] arr2 = {2,1,2,3,2,4,2,5};
+        int[] arr3 = {3,3,1,1,2,2,4,4,5,5};
+        
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(1,0);
+        map.put(2,0);
+        map.put(3,0);
+        //정답 갯수 Count
+        for (int i = 0; i < answers.length; i++) {
+            int num = answers[i];
+            if (arr1[i%5] == num) map.replace(1, map.get(1)+1);
+            if (arr2[i%8] == num) map.replace(2, map.get(2)+1);
+            if (arr3[i%10] == num) map.replace(3, map.get(3)+1);
+        }
+        => ==================================================
+        => arr1, arr2, arr3의 갯수만큼 나누어 연속된 숫자를 추출
+        => ==================================================
+        
+        //최대 값 구하기
+        int max = map.get(1);
+        for (Integer val : map.values()) {
+            if (val > max) {
+                max = val;
+            }
+        }
+        
+        => ==================================================
+        => map.values() 값을 integer인 val 한테 준다
+        => val와 초기값 map.get(1)인 max 와 비교 하여 가장큰 값을 확인
+        => val가 max보다 클때 max의 값으로 치환
+        => ==================================================
+        
+        
+        //정답 리스트 형성
+        ArrayList<Integer> answerList = new ArrayList<>();
+        for (Integer key : map.keySet()) {
+            if (map.get(key) == max) {
+                answerList.add(key);
+            }
+        }
+        
+        => ==================================================
+        => ArrayList 를 생성
+        => integer key에 map의 key값들을 선언
+        => map.get(key)의 value 와 가장 max의 값을 비교하여 같을때 list에 add
+        => ==================================================
+        
+        //정렬 및 배열로 변환
+        int[] answer = new int[answerList.size()];
+        Collections.sort(answerList);
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] = answerList.get(i);
+        }
+        
+        return answer;
+    }
+}
+
+
+출처 . https://developerdk.tistory.com/29
